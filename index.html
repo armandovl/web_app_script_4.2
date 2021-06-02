@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <base target="_top">
+  </head>
+  <body>
+      <h3>lista encabezado</h3>
+
+      
+    <form id="">
+      <div class="">
+        <label>seleccionba el genero</lable>
+          <select id="genero" onchange="activaSelect2()">
+            <?!=generoTemp;?>
+          </select>
+      </div>
+
+      <div class="">
+        <label>seleccionba el nombre</lable>
+          <select id="nombre" disabled>
+            <option>nombre</option>
+          </select>
+      </div>
+
+
+
+    </form>
+
+  <script>
+    function activaSelect2(){
+      google.script.run
+      .withSuccessHandler(actualizarInformacion) //funcion si si funciona y recibe parametro inmediato
+      .buscarNombresPorGenero(document.getElementById("genero").value); //ejecuta la funcion del gas
+    }
+
+    //aqui llega la lista de nombres del return funcion buscarNombresPorGenero
+    function actualizarInformacion(listaNombresParametro){ 
+      var selector =document.getElementById("nombre");
+      selector.disabled=false; //activar el selector
+      selector.options.length=0; //eliminar lo que ya tiene
+
+      listaNombresParametro.forEach( element=>{
+        var nuevoElemento=document.createElement('option');// se cre un elemento option
+        nuevoElemento.value=element;
+        nuevoElemento.innerHTML=element;
+        selector.appendChild(nuevoElemento);
+      })
+    }
+
+
+  </script>
+  </body>
+</html>
